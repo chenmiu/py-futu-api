@@ -628,7 +628,7 @@ message Response
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
-<li>包体格式类型请求包由协议头 <a class="reference external" href="#id8">nProtoFmtType</a> 指定， FutuOPenD主动推送格式参见 <a class="reference external" href="https://futunnopen.github.io/futuquant/setup/FutuOpenDGuide.html#id5">FutuOpenD配置</a> 约定的 “push_proto_type“ 配置项</li>
+<li>包体格式类型请求包由协议头 <a class="reference external" href="#id8">nProtoFmtType</a> 指定， FutuOPenD主动推送格式参见 <a class="reference external" href="https://futunnopen.github.io/py-futu-api/setup/FutuOpenDGuide.html#id5">FutuOpenD配置</a> 约定的 “push_proto_type“ 配置项</li>
 <li>原始协议文件格式是以Protobuf格式定义，若需要json格式传输，建议使用protobuf3的接口直接转换成json</li>
 <li>枚举值字段定义使用有符号整形，注释指明对应枚举，枚举一般定义于Common.proto，Qot_Common.proto，Trd_Common.proto文件中</li>
 <li><strong>协议中价格、百分比等数据用浮点类型来传输，直接使用会有精度问题，需要根据精度（如协议中未指明，默认小数点后三位）做四舍五入之后再使用</strong></li>
@@ -642,7 +642,7 @@ message Response
 <div><ul class="simple">
 <li>若FutuOpenD配置了加密, <a class="reference external" href="base_define.html#initconnect-proto-1001">InitConnect</a> 初始化连接协议必须使用RSA公钥加密，后续其他协议使用 <a class="reference external" href="base_define.html#initconnect-proto-1001">InitConnect</a> 返回的随机密钥进行AES加密通信。</li>
 <li>FutuOpenD的加密流程借鉴了SSL协议，但考虑到一般是本地部署服务和应用，简化了相关流程，FutuOpenD与接入Client共用了同一个RSA 私钥文件，请妥善保存和分发私钥文件。</li>
-<li>可到”<a class="reference external" href="http://web.chacuo.net/netrsakeypair">http://web.chacuo.net/netrsakeypair</a>”这个网址在线生成随机RSA密钥对，密钥格式必须为PCKS#1，密钥长度512，1024都可以，不要设置密码，将生成的私钥复制保存到文件中，然后将私钥文件路径配置到 <a class="reference external" href="https://futunnopen.github.io/futuquant/setup/FutuOpenDGuide.html#id5">FutuOpenD配置</a> 约定的 “rsa_private_key”配置项中</li>
+<li>可到”<a class="reference external" href="http://web.chacuo.net/netrsakeypair">http://web.chacuo.net/netrsakeypair</a>”这个网址在线生成随机RSA密钥对，密钥格式必须为PCKS#1，密钥长度512，1024都可以，不要设置密码，将生成的私钥复制保存到文件中，然后将私钥文件路径配置到 <a class="reference external" href="https://futunnopen.github.io/py-futu-api/setup/FutuOpenDGuide.html#id5">FutuOpenD配置</a> 约定的 “rsa_private_key”配置项中</li>
 <li></li>
 <li><strong>强烈建议有实盘交易的用户配置加密，避免账户和交易信息泄露</strong></li>
 </ul>
@@ -655,11 +655,11 @@ message Response
 <blockquote>
 <div><blockquote>
 <div><ul class="simple">
-<li><a class="reference external" href="https://futunnopen.github.io/futuquant/setup/FutuOpenDGuide.html#id5">FutuOpenD配置</a> 约定”rsa_private_key”为私钥文件路径</li>
+<li><a class="reference external" href="https://futunnopen.github.io/py-futu-api/setup/FutuOpenDGuide.html#id5">FutuOpenD配置</a> 约定”rsa_private_key”为私钥文件路径</li>
 <li>FutuOpenD 与接入客户端共用相同的私钥文件</li>
 <li>RSA加解密仅用于 <a class="reference external" href="base_define.html#initconnect-proto-1001">InitConnect</a> 请求，用于安全获取其它请求协议的对称加密Key</li>
 <li>FutuOpenD的RSA密钥为1024位, 填充方式PKCS1, 公钥加密，私钥解密，公钥可通过私钥生成</li>
-<li>Python API 参考实现: <a class="reference external" href="https://github.com/FutunnOpen/futuquant/tree/master/futuquant/common/sys_config.py">RsaCrypt</a>  类的encrypt / decrypt 接口</li>
+<li>Python API 参考实现: <a class="reference external" href="https://github.com/FutunnOpen/py-futu-api/tree/master/futu/common/sys_config.py">RsaCrypt</a>  类的encrypt / decrypt 接口</li>
 </ul>
 </div></blockquote>
 <p><strong>发送数据加密</strong></p>
@@ -686,7 +686,7 @@ message Response
 <div><ul class="simple">
 <li>加密key由 <a class="reference external" href="base_define.html#initconnect-proto-1001">InitConnect</a> 协议返回</li>
 <li>使用的是AES的ecb加密模式。</li>
-<li>Python API 参考实现: <a class="reference external" href="https://github.com/FutunnOpen/futuquant/tree/master/futuquant/common/conn_mng.py">FutuConnMng</a>  类的encrypt_conn_data / decrypt_conn_data 接口</li>
+<li>Python API 参考实现: <a class="reference external" href="https://github.com/FutunnOpen/py-futu-api/tree/master/futu/common/conn_mng.py">FutuConnMng</a>  类的encrypt_conn_data / decrypt_conn_data 接口</li>
 </ul>
 </div></blockquote>
 <p><strong>发送数据加密</strong></p>
